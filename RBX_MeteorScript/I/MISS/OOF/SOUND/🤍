@@ -1,0 +1,40 @@
+--RB: Znactr,Saduncl3
+--DC: Z-Eso#0111,Meteor#9042
+--rscripts.net/u/Meteor ✅
+--DEX EXPLORER SCRİPT:
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/loglizzy/dexV4/main/main.lua'))()
+
+local KnifeName = "Knife" -- Use Default Knife 
+local AccessoryName = "8BitController" -- Enter the accessory name here. (Copy Workspace>UserName>[accessory] name from DEX Explorer script)
+
+local function UpdateAccessoryPosition()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local knife = character:FindFirstChild(KnifeName)
+    local accessory = character:FindFirstChild(AccessoryName)
+    
+    if knife and accessory then
+        local knifePosition = knife.Handle.Position
+        accessory.Handle.Position = knifePosition
+        accessory.Handle.LookAt = knifePosition + knife.Handle.CFrame.LookVector
+    end
+end
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
+    character.ChildAdded:Connect(function(child)
+        if child.Name == KnifeName or child.Name == AccessoryName then
+            wait()
+            UpdateAccessoryPosition()
+        end
+    end)
+end)
+
+if game.Players.LocalPlayer.Character then
+    UpdateAccessoryPosition()
+end
+
+--RB: Znactr,Saduncl3
+--DC: Z-Eso#0111,Meteor#9042
+--rscripts.net/u/Meteor ✅
+--DEX EXPLORER SCRİPT:
+-- loadstring(game:HttpGet('https://raw.githubusercontent.com/loglizzy/dexV4/main/main.lua'))()
